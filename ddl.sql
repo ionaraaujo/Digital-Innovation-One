@@ -16,7 +16,7 @@ create table if not exists agencia(
 	foreign key (banco_numero)  references banco(numero)
 );
 
-create table cliente (
+create table if not exists cliente (
 	numero bigserial primary key,
 	nome varchar(120) not null,
 	email varchar(250) not null,
@@ -24,7 +24,7 @@ create table cliente (
 	data_criacao timestamp not null default current_timestamp
 );
 
-create table conta_corrente(
+create table if not exists conta_corrente(
 	banco_numero integer not null,
 	agencia_numero integer not null,
 	numero bigint not null,
@@ -37,14 +37,14 @@ create table conta_corrente(
 	foreign key (cliente_numero) references cliente(numero)
 );
 
-create table tipo_transacao (
+create table if not exists tipo_transacao (
 	id smallserial primary key,
 	nome varchar(50) not null,
 	ativo boolean not null default true,
 	data_criacao timestamp not null default current_timestamp
 );
 
-create table cliente_transacoes (
+create table if not exists cliente_transacoes (
 	id bigserial primary key,
 	banco_numero integer not null,
 	agencia_numero integer not null,
